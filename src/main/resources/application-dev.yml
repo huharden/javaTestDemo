@@ -1,6 +1,6 @@
 spring:
   application:
-    name: pay-payment
+    name: test-demo
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:

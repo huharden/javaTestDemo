@@ -1,13 +1,9 @@
 package com.brock.smootbursty.controller;
 
-import com.brock.smootbursty.car.AIMsgVO;
-import com.brock.smootbursty.utils.EmojiFilter;
 import com.brock.smootbursty.utils.HttpClientUtil;
 import com.brock.smootbursty.utils.RedisUtils;
-import com.izhubo.rest.AppProperties;
 import com.vdurmont.emoji.EmojiParser;
 import net.sf.json.JSONObject;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
