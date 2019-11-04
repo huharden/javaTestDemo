@@ -50,4 +50,57 @@ public class AlgorithmicPractice {
 
     }
 
+    public static int singleNumber(int[] nums) {
+        int a=0;
+        for(int i = 0; i<nums.length;i++){
+            a = a^nums[i];
+        }
+        return a;
+    }
+
+    /**
+     * 冒泡排序
+     */
+    public static int[] sort(int[] nums){
+        for(int i=0; i<nums.length-1; i++){
+            for(int j = i+1; j<nums.length;j++){
+                if(nums[i] > nums[j]){
+                    int temp = nums[i];
+                    nums[i] = nums[j];
+                    nums[j] = temp;
+                }
+            }
+        }
+        return nums;
+    }
+
+    public static int[] plusOne(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {
+            digits[i]++;
+            digits[i] = digits[i] % 10;
+            if (digits[i] != 0){
+                return digits;
+            }
+        }
+        digits = new int[digits.length + 1];
+        digits[0] = 1;
+        return digits;
+    }
+
+    public static void moveZeroes(int[] nums) {
+        int[] tempNums = new int[nums.length];
+        int j = 0;
+        for(int i=0; i<nums.length; i++){
+            if(nums[i] != 0){
+                tempNums[j]= nums[i];
+                j++;
+            }
+        }
+        nums = tempNums;
+        System.out.println("结束");
+
+    }
+
+
+
 }
