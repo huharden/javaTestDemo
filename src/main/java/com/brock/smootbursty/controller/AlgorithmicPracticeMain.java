@@ -14,12 +14,8 @@ public class AlgorithmicPracticeMain {
     public AlgorithmicPractice algorithmicPractice;
 
     public static void main(String[] args){
-        /*ListNode listNode = new ListNode(1);
-        listNode.next = new ListNode(2).next = new ListNode(3).next = new ListNode(4).next= new ListNode(5);
-        AlgorithmicPractice.removeNthFromEnd(listNode,2);*/
-
-        int[] nums = {1,0,9};
-         AlgorithmicPractice.moveZeroes(nums);
+        int x = 199999;
+        String a = String.valueOf(x);
 
 
     }

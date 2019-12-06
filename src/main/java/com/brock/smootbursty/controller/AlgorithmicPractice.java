@@ -4,6 +4,9 @@ import com.brock.smootbursty.model.ListNode;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Description:
  *
@@ -100,6 +103,36 @@ public class AlgorithmicPractice {
         System.out.println("结束");
 
     }
+
+    public int[] twoSum(int[] nums, int target) {
+        int[] result = new int[2];
+        Map<Integer, Integer> map = new HashMap<>(0);
+        for(int i = 0; i<nums.length; i++){
+            int value = target - nums[i];
+            if(map.containsKey(value)){
+                result[0] = i;
+                result[1] = map.get(value);
+                return result;
+            }
+            map.put(nums[i], i);
+        }
+        return result;
+    }
+
+
+
+    public void reverseString(char[] s) {
+        for(int i = 0; i<s.length/2; i++){
+            char temp = s[i];
+            s[i] = s[s.length-1-i];
+            s[s.length-1-1] = temp;
+
+        }
+
+    }
+
+
+
 
 
 
