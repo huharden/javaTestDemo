@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -251,5 +249,128 @@ public class RedisUtils {
 
     public Object rpop(String key) {
         return listOperations.rightPop(key);
+    }
+
+    /**
+     * 往Hash中存入数据
+     *
+     * @param key Redis键
+     * @param hKey Hash键
+     * @param value 值
+     */
+    public void hPut(final String key, final String hKey, final Object value) {
+
+        redisTemplate.opsForHash().put(key, hKey, value);
+    }
+
+    /**
+     * 往Hash中存入多个数据
+     *
+     * @param key Redis键
+     * @param values Hash键值对
+     */
+    public void hPutAll(final String key, final Map<String, Object> values) {
+
+        redisTemplate.opsForHash().putAll(key, values);
+    }
+
+    /**
+     * 获取Hash中的数据
+     *
+     * @param key Redis键
+     * @param hKey Hash键
+     * @return Hash中的对象
+     */
+    public Object hGet(final String key, final String hKey) {
+
+        return redisTemplate.opsForHash().get(key, hKey);
+    }
+
+    /**
+     * 获取多个Hash中的数据
+     *
+     * @param key Redis键
+     * @param hKeys Hash键集合
+     * @return Hash对象集合
+     */
+    public List<Object> hMultiGet(final String key, final Collection<Object> hKeys) {
+
+        return redisTemplate.opsForHash().multiGet(key, hKeys);
+    }
+
+    // 存储Set相关操作
+
+    /**
+     * 往Set中存入数据
+     *
+     * @param key Redis键
+     * @param values 值
+     * @return 存入的个数
+     */
+    public  long sSet(final String key, final Object... values) {
+        Long count = redisTemplate.opsForSet().add(key, values);
+        return count == null ? 0 : count;
+    }
+
+    /**
+     * 删除Set中的数据
+     *
+     * @param key Redis键
+     * @param values 值
+     * @return 移除的个数
+     */
+    public long sDel(final String key, final Object... values) {
+        Long count = redisTemplate.opsForSet().remove(key, values);
+        return count == null ? 0 : count;
+    }
+
+    // 存储List相关操作
+
+    /**
+     * 往List中存入数据
+     *
+     * @param key Redis键
+     * @param value 数据
+     * @return 存入的个数
+     */
+    public long lPush(final String key, final Object value) {
+        Long count = redisTemplate.opsForList().rightPush(key, value);
+        return count == null ? 0 : count;
+    }
+
+    /**
+     * 往List中存入多个数据
+     *
+     * @param key Redis键
+     * @param values 多个数据
+     * @return 存入的个数
+     */
+    public long lPushAll(final String key, final Collection<Object> values) {
+        Long count = redisTemplate.opsForList().rightPushAll(key, values);
+        return count == null ? 0 : count;
+    }
+
+    /**
+     * 往List中存入多个数据
+     *
+     * @param key Redis键
+     * @param values 多个数据
+     * @return 存入的个数
+     */
+    public long lPushAll(final String key, final Object... values) {
+        Long count = redisTemplate.opsForList().rightPushAll(key, values);
+        return count == null ? 0 : count;
+    }
+
+    /**
+     * 从List中获取begin到end之间的元素
+     *
+     * @param key Redis键
+     * @param start 开始位置
+     * @param end 结束位置（start=0，end=-1表示获取全部元素）
+     * @return List对象
+     */
+    public  List<Object> lGet(final String key, final int start, final int end) {
+        return redisTemplate.opsForList().range(key, start, end);
     }
 }

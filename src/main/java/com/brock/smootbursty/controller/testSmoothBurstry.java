@@ -1,16 +1,18 @@
 package com.brock.smootbursty.controller;
 
-import com.brock.smootbursty.utils.HttpClientUtil;
 import com.brock.smootbursty.utils.RedisUtils;
 import com.vdurmont.emoji.EmojiParser;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.core.RedisOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -25,6 +27,8 @@ import java.util.*;
 public class testSmoothBurstry {
     @Resource
     private RestTemplate restTemplate;
+
+    private RedisTemplate redisTemplate;
     @Autowired
     private RedisUtils redisUtils;
     private Map<String, Object> map;
@@ -58,7 +62,7 @@ public class testSmoothBurstry {
         //requestMap.put("Content-Type", "application/json");
 
         try {
-            String result = HttpClientUtil.sendHttpPost(url, requestMap);
+            String result = "ces";
             //String result = HttpClientUtil.get(aiMsgUrl, headers);
             System.out.println(result);
             JSONObject jsonobject = JSONObject.fromObject(result);
@@ -84,8 +88,49 @@ public class testSmoothBurstry {
     }
 
     @PostMapping("/test4")
-    public void test(HttpServletRequest request){
-        String aa = request.getParameter("aa");
-        System.out.println("接收成功");
+    public Long getTimeConsuming1() throws Exception {
+
+        Long now = System.currentTimeMillis();
+        Random x = new Random(10);
+        try {
+            for(int i=0; i<100; i++){
+
+                redisUtils.hPut("1101211994"+ x.nextInt(), "121212", i+ "测试1112");
+            }
+
+            Long time = System.currentTimeMillis()-now;
+            System.out.println("发送成功,耗时===>>>" + time);
+            return time;
+        }catch (Exception e){
+            throw new Exception("系统异常");
+
+        }
+    }
+
+    /**
+     * 使用redis管道进行数据存储
+     * @throws Exception
+     */
+    @PostMapping("/test5")
+    public Long getTimeConsuming2(String key) {
+
+        Long now = System.currentTimeMillis();
+        Random x = new Random(10);
+
+        SessionCallback sessionCallback = new SessionCallback<List<Object>>() {
+            @Override
+            public List<Object> execute(RedisOperations operations)
+                    throws DataAccessException {
+                operations.multi();
+                for (int i = 0; i < 100000; i++) {
+                    operations.opsForZSet().add(key, i+"151515151", 100);
+                }
+               return operations.exec();
+            }
+        };
+        redisTemplate.executePipelined(sessionCallback);
+        Long time = System.currentTimeMillis()-now;
+        System.out.println("发送成功,耗时===>>>" + time);
+        return time;
     }
 }
