@@ -36,7 +36,7 @@ spring:
       useGlobalDataSourceStat: true
 
   redis:
-    database: 2
+    database: 0
     host: 10.0.98.225
     port: 6379
     password:       # 密码（默认为空）
