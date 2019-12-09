@@ -1,6 +1,5 @@
 package com.brock.smootbursty.controller;
 
-import com.brock.smootbursty.utils.Constant;
 import com.brock.smootbursty.utils.RedisUtils;
 import com.sun.istack.internal.Nullable;
 import com.vdurmont.emoji.EmojiParser;
