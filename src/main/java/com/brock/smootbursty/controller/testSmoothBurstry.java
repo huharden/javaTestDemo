@@ -1,11 +1,15 @@
 package com.brock.smootbursty.controller;
 
+import com.brock.smootbursty.utils.Constant;
 import com.brock.smootbursty.utils.RedisUtils;
+import com.sun.istack.internal.Nullable;
 import com.vdurmont.emoji.EmojiParser;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SessionCallback;
@@ -28,7 +32,9 @@ public class testSmoothBurstry {
     @Resource
     private RestTemplate restTemplate;
 
+    @Autowired
     private RedisTemplate redisTemplate;
+
     @Autowired
     private RedisUtils redisUtils;
     private Map<String, Object> map;
@@ -93,9 +99,9 @@ public class testSmoothBurstry {
         Long now = System.currentTimeMillis();
         Random x = new Random(10);
         try {
-            for(int i=0; i<100; i++){
+            for(int i=0; i<100000; i++){
 
-                redisUtils.hPut("1101211994"+ x.nextInt(), "121212", i+ "测试1112");
+                redisUtils.hPut("2101211994"+ x.nextInt(), "121212", i+ "测试1112");
             }
 
             Long time = System.currentTimeMillis()-now;
@@ -112,25 +118,53 @@ public class testSmoothBurstry {
      * @throws Exception
      */
     @PostMapping("/test5")
-    public Long getTimeConsuming2(String key) {
+    public Long getTimeConsuming2() {
 
         Long now = System.currentTimeMillis();
-        Random x = new Random(10);
-
+        Random x = new Random(100);
+        // 使用redis 管道进行数据存储
         SessionCallback sessionCallback = new SessionCallback<List<Object>>() {
             @Override
             public List<Object> execute(RedisOperations operations)
                     throws DataAccessException {
                 operations.multi();
-                for (int i = 0; i < 100000; i++) {
-                    operations.opsForZSet().add(key, i+"151515151", 100);
+                for(int i = 0; i<100000; i++){
+                    operations.opsForHash().put("1101211994"+ x.nextInt(), "121212", i+ "测试1112");
                 }
-               return operations.exec();
+                return operations.exec();
             }
         };
         redisTemplate.executePipelined(sessionCallback);
+
         Long time = System.currentTimeMillis()-now;
         System.out.println("发送成功,耗时===>>>" + time);
         return time;
+    }
+
+
+    /**
+     * 使用redis管道进行数据存储
+     * @throws Exception
+     */
+    @PostMapping("/test7")
+    public void test7(){
+        Long now = System.currentTimeMillis();
+        Random x = new Random(100);
+        List<Long> list = redisTemplate.executePipelined(new RedisCallback<Long>() {
+            @Nullable
+            @Override
+            public Long doInRedis(RedisConnection connection) throws DataAccessException {
+                connection.openPipeline();
+                for (int i = 0; i < 100000; i++) {
+                    String key = "123" + i;
+                    connection.zCount(key.getBytes(), 0,Integer.MAX_VALUE);
+                }
+                connection.closePipeline();
+                return null;
+
+            }
+        });
+        Long time = System.currentTimeMillis()-now;
+        System.out.println("发送成功,耗时===>>>" + time);
     }
 }
