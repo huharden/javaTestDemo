@@ -1,6 +1,5 @@
 package com.brock.smootbursty.controller;
 
-import java.util.Hashtable;
 
 /**
  * Description:
@@ -8,7 +7,7 @@ import java.util.Hashtable;
  * @author: hutao
  * Date: 2019-12-27-11:44
  */
-public class Test01 {
+public class Test01 extends Thread{
 
     static long value = 0l;
 
