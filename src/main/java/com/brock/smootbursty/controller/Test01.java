@@ -7,7 +7,7 @@ package com.brock.smootbursty.controller;
  * @author: hutao
  * Date: 2019-12-27-11:44
  */
-public class Test01 extends Thread{
+public class Test01{
 
     static long value = 0l;
 
@@ -16,7 +16,6 @@ public class Test01 extends Thread{
 
      long get() {
         synchronized(box1){
-
             return value;
         }
 
@@ -24,14 +23,10 @@ public class Test01 extends Thread{
     }
 
      void add() {
-         synchronized(box2){
+         synchronized(box1){
 
-             try {
-                 Thread.sleep(3000);
                  value += 1;
-             } catch (InterruptedException e) {
-                 e.printStackTrace();
-             }
+
          }
 
 
@@ -48,11 +43,7 @@ public class Test01 extends Thread{
             @Override
             public void run() {
                 test01.add();
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
                 System.out.println("aaaa===>>>"+test01.get());
             }
         }).start();
