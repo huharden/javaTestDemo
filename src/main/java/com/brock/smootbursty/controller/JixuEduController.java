@@ -35,7 +35,7 @@ public class JixuEduController {
         book.setPrice(0.32f);
         list.add(book);
 
-        File dest = new File("D:\\Users\\Administrator\\Desktop");
+        File dest = new File("D:\\Users\\Administrator\\Desktop\\person1.xml");
 
         createXMLBySAX(list,dest);
         return "成功";
