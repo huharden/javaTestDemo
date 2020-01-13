@@ -3,6 +3,8 @@ package com.brock.smootbursty.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 /**
  * Description:
  *
@@ -12,5 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/timeouts")
 public class TimeoutTestController {
+
+    public void test01(){
+        ArrayList list = new ArrayList();
+        list.add(1);
+    }
 
 }
