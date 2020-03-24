@@ -4,7 +4,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      url: jdbc:mysql://10.0.98.225:3306/hq_payment?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/hutao_demo?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
       username: root
       password: 123456
       driverClassName: com.mysql.jdbc.Driver
@@ -37,32 +37,34 @@ spring:
 
   redis:
     database: 0
-    host: 10.0.98.225
+    host: 127.0.0.1
     port: 6379
-    password:       # 密码（默认为空）
-    timeout: 15000  # 连接超时时长（毫秒）
-    pool:
-      max-active: 200  # 连接池最大连接数（使用负值表示没有限制）
-      max-wait: -1      # 连接池最大阻塞等待时间（使用负值表示没有限制）
-      max-idle: 10      # 连接池中的最大空闲连接
-      min-idle: 5       # 连接池中的最小空闲连接
+    password:       # 密码（默认为空） # 连接超时时长（毫秒）
+    timeout: 15000ms
+    jedis:
+      pool:
+        max-active: 200  # 连接池最大连接数（使用负值表示没有限制）
+        max-wait: -1ms      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 10      # 连接池中的最大空闲连接
+        min-idle: 5       # 连接池中的最小空闲连接
 
-  rabbitmq:
-    host: 10.0.98.46
-    port: 5672
-    username: admin
-    password: mon4498
-    # 支持发布确认
-    publisher-confirms: true
-    # 支持发布返回
-    publisher-returns: true
-    listener:
-      simple:
-        acknowledge-mode: manual
-        # 指定最小的消费者数量
-        concurrency: 5
-        # 指定最大的消费者数量
-        max-concurrency: 20
-        # 是否支持重试
-        retry:
-          enabled: true
+
+#  rabbitmq:
+#    host: 10.0.98.46
+#    port: 5672
+#    username: admin
+#    password: mon4498
+#    # 支持发布确认
+#    publisher-confirms: true
+#    # 支持发布返回
+#    publisher-returns: true
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
+#        # 指定最小的消费者数量
+#        concurrency: 5
+#        # 指定最大的消费者数量
+#        max-concurrency: 20
+#        # 是否支持重试
+#        retry:
+#          enabled: true
