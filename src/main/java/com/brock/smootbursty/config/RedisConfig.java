@@ -42,15 +42,21 @@ public class RedisConfig extends CachingConfigurerSupport {
      * @CachePut
      * @CacheEvict
      */
+//    @Bean
+//    public CacheManager cacheManager(RedisTemplate cacheRedisTemplate) {
+//        RedisCacheManager cacheManager = new RedisCacheManager(cacheRedisTemplate);
+//        //设置缓存过期时间
+//        cacheManager.setDefaultExpiration(DEFAULTEXPIRETIME);
+//        cacheManager.setUsePrefix(true);
+//        cacheManager.setCachePrefix(cacheName -> ("cache:" + cacheName).getBytes());
+//        return cacheManager;
+//    }
     @Bean
-    public CacheManager cacheManager(RedisTemplate cacheRedisTemplate) {
-        RedisCacheManager cacheManager = new RedisCacheManager(cacheRedisTemplate);
-        //设置缓存过期时间
-        cacheManager.setDefaultExpiration(DEFAULTEXPIRETIME);
-        cacheManager.setUsePrefix(true);
-        cacheManager.setCachePrefix(cacheName -> ("cache:" + cacheName).getBytes());
+    public CacheManager cacheManager(RedisConnectionFactory factory) {
+        RedisCacheManager cacheManager = RedisCacheManager.create(factory);
         return cacheManager;
     }
+
 
     /**
      * 缓存注解的RedisTemplate
