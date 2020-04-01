@@ -126,6 +126,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--kafka 配置-->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
 
         <!-- Jackson json -->
         <dependency>

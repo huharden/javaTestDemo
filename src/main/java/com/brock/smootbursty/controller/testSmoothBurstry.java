@@ -1,5 +1,6 @@
 package com.brock.smootbursty.controller;
 
+import com.brock.smootbursty.service.IndicatorService;
 import com.brock.smootbursty.utils.RedisUtils;
 import com.sun.istack.internal.Nullable;
 import com.vdurmont.emoji.EmojiParser;
@@ -30,6 +31,9 @@ import java.util.*;
 public class testSmoothBurstry {
     @Resource
     private RestTemplate restTemplate;
+
+    @Autowired
+    private IndicatorService indicatorService;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -165,5 +169,10 @@ public class testSmoothBurstry {
         });
         Long time = System.currentTimeMillis()-now;
         System.out.println("发送成功,耗时===>>>" + time);
+    }
+
+    @PostMapping("/kafka")
+    public void kafkaTest(){
+        indicatorService.sendMessage("ceshi", "kafka111");
     }
 }
