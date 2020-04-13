@@ -1,6 +1,5 @@
 package com.hj.study.utils;
 
-import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hj.study.dto.Message;
@@ -34,7 +33,8 @@ public class ProducerUtil {
         message.setSendTime(LocalDateTime.now());
 
         // 指定topic sl_test
-        kafkaTemplate.send("sl_test", JSON.toJSONString(message));
+        System.out.println("发送信息===>>>"+ gson.toJson(message));
+        kafkaTemplate.send("sl_test", gson.toJson(message));
     }
 
 }
