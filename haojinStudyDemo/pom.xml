@@ -11,5 +11,13 @@
 
     <artifactId>haojinStudyDemo</artifactId>
 
+    <dependencies>
+        <!--kafka 配置-->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+    </dependencies>
+
 
 </project>
