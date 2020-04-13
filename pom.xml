@@ -6,7 +6,12 @@
 
     <groupId>com.brock</groupId>
     <artifactId>javaTestDemo</artifactId>
+    <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
+    <modules>
+        <module>haojinStudyDemo</module>
+        <module>henqiStudyDemo</module>
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
