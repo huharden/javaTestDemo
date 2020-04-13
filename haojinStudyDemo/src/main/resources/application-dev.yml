@@ -60,6 +60,7 @@ spring:
       properties:
         linger.ms: 1
     consumer:
+      group-id: 001
       enable-auto-commit: false
       auto-commit-interval: 100ms
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
