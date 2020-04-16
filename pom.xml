@@ -11,6 +11,7 @@
     <modules>
         <module>haojinStudyDemo</module>
         <module>henqiStudyDemo</module>
+        <module>eureka-server</module>
     </modules>
 
     <parent>
