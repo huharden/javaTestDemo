@@ -83,24 +83,35 @@ spring:
     user:
       name: admin
       password: 123456
+  cloud:
+    config:
+      uri: 127.0.0.1
+
 
 eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@127.0.0.1:8888/eureka
-    # 缓存清单每隔30秒跟新一次
-    registry-fetch-interval-seconds: 10
   instance:
-    # 实例使用ip进行访问
-    prefer-ip-address: true
-    # 实例显示id
-    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
-    # 服务续约任务调用间隔时间，默认30秒
-    lease-renewal-interval-in-seconds: 2
-    # 服务失效时间，默认90秒
-    lease-expiration-duration-in-seconds: 5
-    #状态页面和健康指标
-    statusPageUrlPath: ${server.context-path}/swagger-ui.html
+    hostname: localhost
+    # 使用IP注册
+    preferIpAddress: true
+    # 心跳间隔 默认30秒
+    lease-renewal-interval-in-seconds: 3
+    # 服务失效时间： 如果多久没有收到请求，则可以删除服务 默认90秒
+    lease-expiration-duration-in-seconds: 7
+  client:
+    # 关闭eureka client
+    # enabled: false
+    # 注册自身到eureka服务器
+    registerWithEureka: true
+    # 表示是否从eureka服务器获取注册信息
+    fetchRegistry: false
+    # 客户端从Eureka Server集群里更新Eureka Server信息的频率
+    eureka-service-url-poll-interval-seconds: 60
+    # 定义从注册中心获取注册服务的信息
+    registry-fetch-interval-seconds: 5
+    # 设置eureka服务器所在的地址，查询服务和注册服务都需要依赖这个地址
+    service-url:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${spring.cloud.config.uri}:8888/eureka
+
 #  rabbitmq:
 #    host: 10.0.98.46
 #    port: 5672
