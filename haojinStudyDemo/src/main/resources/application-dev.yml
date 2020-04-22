@@ -89,6 +89,8 @@ spring:
 
 
 eureka:
+    instance:
+      hostname: test-demo
     client:
     # 关闭eureka client
       # enabled: false
@@ -102,7 +104,7 @@ eureka:
       #registry-fetch-interval-seconds: 5
       # 设置eureka服务器所在的地址，查询服务和注册服务都需要依赖这个地址（不要使用service-Url）
       serviceUrl:
-        defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${spring.cloud.config.uri}:8763/eureka/
+        defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@127.0.0.1:8763/eureka/
 
 #  rabbitmq:
 #    host: 10.0.98.46
