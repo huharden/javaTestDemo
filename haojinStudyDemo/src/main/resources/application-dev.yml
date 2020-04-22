@@ -4,7 +4,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      url: jdbc:mysql://127.0.0.1:3306/myself_test?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://127.0.0.1:3306/data_platform?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
       username: root
       password: 123456
       driverClassName: com.mysql.jdbc.Driver
@@ -89,28 +89,20 @@ spring:
 
 
 eureka:
-  instance:
-    hostname: localhost
-    # 使用IP注册
-    preferIpAddress: true
-    # 心跳间隔 默认30秒
-    lease-renewal-interval-in-seconds: 3
-    # 服务失效时间： 如果多久没有收到请求，则可以删除服务 默认90秒
-    lease-expiration-duration-in-seconds: 7
-  client:
+    client:
     # 关闭eureka client
-    # enabled: false
-    # 注册自身到eureka服务器
-    registerWithEureka: true
-    # 表示是否从eureka服务器获取注册信息
-    fetchRegistry: false
-    # 客户端从Eureka Server集群里更新Eureka Server信息的频率
-    eureka-service-url-poll-interval-seconds: 60
-    # 定义从注册中心获取注册服务的信息
-    registry-fetch-interval-seconds: 5
-    # 设置eureka服务器所在的地址，查询服务和注册服务都需要依赖这个地址
-    service-url:
-      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${spring.cloud.config.uri}:8888/eureka
+      # enabled: false
+      # 注册自身到eureka服务器
+      #registerWithEureka: false
+      # 表示是否从eureka服务器获取注册信息
+      #fetchRegistry: false
+      # 客户端从Eureka Server集群里更新Eureka Server信息的频率
+      #eureka-service-url-poll-interval-seconds: 60
+      # 定义从注册中心获取注册服务的信息
+      #registry-fetch-interval-seconds: 5
+      # 设置eureka服务器所在的地址，查询服务和注册服务都需要依赖这个地址（不要使用service-Url）
+      serviceUrl:
+        defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${spring.cloud.config.uri}:8763/eureka/
 
 #  rabbitmq:
 #    host: 10.0.98.46
