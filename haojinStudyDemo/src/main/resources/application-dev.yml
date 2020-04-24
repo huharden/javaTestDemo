@@ -91,6 +91,9 @@ spring:
 eureka:
     instance:
       hostname: test-demo
+      instance-id:
+      # 默认使用IP 地址进行显示
+      prefer-ip-address: true
     client:
     # 关闭eureka client
       # enabled: false
@@ -105,6 +108,7 @@ eureka:
       # 设置eureka服务器所在的地址，查询服务和注册服务都需要依赖这个地址（不要使用service-Url）
       serviceUrl:
         defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@127.0.0.1:8763/eureka/
+
 
 #  rabbitmq:
 #    host: 10.0.98.46
