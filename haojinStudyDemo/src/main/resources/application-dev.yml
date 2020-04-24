@@ -1,4 +1,6 @@
 spring:
+  transaction:
+    default-timeout: 2
   application:
     name: test-demo
   datasource:

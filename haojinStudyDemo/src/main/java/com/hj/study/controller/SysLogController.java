@@ -3,6 +3,7 @@ package com.hj.study.controller;
 import com.hj.study.constant.StatusCode;
 import com.hj.study.entity.SysLogEntity;
 import com.hj.study.service.SysLogService;
+import com.hj.study.utils.CommonException;
 import com.hj.study.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +42,7 @@ public class SysLogController {
     }
 
     @PostMapping("/save")
-    public R save(@RequestBody SysLogEntity sysLogEntity){
+    public R save(@RequestBody SysLogEntity sysLogEntity) throws CommonException {
 
         sysLogService.save(sysLogEntity);
         return R.ok();

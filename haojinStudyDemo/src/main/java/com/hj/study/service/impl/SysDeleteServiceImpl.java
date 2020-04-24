@@ -25,9 +25,10 @@ public class SysDeleteServiceImpl implements SysDeleteService {
 
     @Override
     @Transactional
-    public int saveLog(SysDeleteLogEntity sysDeleteLogEntity) {
+    public int saveLog(SysDeleteLogEntity sysDeleteLogEntity) throws CommonException {
 
         sysDeleteLogEntity.setId(SnowflakeUtils.nextId());
+
 
         if(sysDeleteLogEntity.getContent() == null){
             throw new CommonException("必填参数缺失");

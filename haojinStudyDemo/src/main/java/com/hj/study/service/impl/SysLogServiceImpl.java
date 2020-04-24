@@ -38,8 +38,8 @@ public class SysLogServiceImpl implements SysLogService {
     }
 
     @Override
-    @Transactional
-    public int save(SysLogEntity sysLogEntity) {
+    @Transactional(noRollbackFor = CommonException.class)
+    public int save(SysLogEntity sysLogEntity) throws CommonException {
 
         sysLogEntity.setId(SnowflakeUtils.nextId());
         sysLogEntity.setMethod("INSERT");
@@ -58,9 +58,7 @@ public class SysLogServiceImpl implements SysLogService {
     public int update(SysLogEntity sysLogEntity){
 
         sysLogEntity.setMethod("UPDATE");
-        if(sysLogEntity.getTime() == null){
-            throw new CommonException("必填参数缺失");
-        }
+
         return sysLogDao.updateByPrimaryKey(sysLogEntity);
 
     }

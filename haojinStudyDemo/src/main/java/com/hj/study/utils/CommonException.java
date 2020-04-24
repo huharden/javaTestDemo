@@ -8,7 +8,7 @@ import com.hj.study.constant.StatusCode;
  * @author: hutao
  * @date 2019/7/12 16:34
  */
-public class CommonException extends RuntimeException {
+public class CommonException extends Throwable{
     private static final long serialVersionUID = 1L;
 
     private String msg;

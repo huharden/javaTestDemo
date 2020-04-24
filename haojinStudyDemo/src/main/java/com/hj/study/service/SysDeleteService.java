@@ -2,6 +2,7 @@ package com.hj.study.service;
 
 
 import com.hj.study.entity.SysDeleteLogEntity;
+import com.hj.study.utils.CommonException;
 
 /**
  * @author : hutao
@@ -9,7 +10,7 @@ import com.hj.study.entity.SysDeleteLogEntity;
  */
 public interface SysDeleteService  {
 
-    int saveLog(SysDeleteLogEntity sysDeleteLogEntity);
+    int saveLog(SysDeleteLogEntity sysDeleteLogEntity) throws CommonException;
 
 
 

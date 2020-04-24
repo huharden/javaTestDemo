@@ -1,6 +1,7 @@
 package com.hj.study.service;
 
 import com.hj.study.entity.SysLogEntity;
+import com.hj.study.utils.CommonException;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public interface SysLogService  {
     /**
      * 保存日志
      */
-    int save(SysLogEntity sysLogEntity);
+    int save(SysLogEntity sysLogEntity) throws CommonException;
 
 
 }
