@@ -21,5 +21,10 @@ public interface SysLogService  {
      */
     List<SysLogEntity> findPage(Map<String, Object> map);
 
+    /**
+     * 保存日志
+     */
+    int save(SysLogEntity sysLogEntity);
+
 
 }

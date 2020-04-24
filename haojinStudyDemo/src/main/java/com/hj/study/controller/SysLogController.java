@@ -40,5 +40,12 @@ public class SysLogController {
         return R.error(StatusCode.DATABASE_SELECT_FAILURE);
     }
 
+    @PostMapping("/save")
+    public R save(@RequestBody SysLogEntity sysLogEntity){
+
+        sysLogService.save(sysLogEntity);
+        return R.ok();
+    }
+
 
 }
