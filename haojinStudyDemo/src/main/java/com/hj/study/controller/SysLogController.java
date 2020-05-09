@@ -27,6 +27,7 @@ public class SysLogController {
     private SysLogService sysLogService;
 
 
+
     /**
      * 日志信息
      */
@@ -47,6 +48,8 @@ public class SysLogController {
         sysLogService.save(sysLogEntity);
         return R.ok();
     }
+
+
 
 
 }
