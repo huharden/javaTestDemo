@@ -2,6 +2,7 @@ package com.hq.study.utils;
 
 
 import com.google.common.reflect.TypeToken;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2017-07-17 21:12
  */
 @Component
+@Slf4j
 public class RedisUtils {
 
     @Autowired
@@ -372,5 +374,89 @@ public class RedisUtils {
      */
     public  List<Object> lGet(final String key, final int start, final int end) {
         return redisTemplate.opsForList().range(key, start, end);
+    }
+
+    /**
+     * 向集合添加一个或多个成员，返回添加成功的数量
+     * @param key
+     * @param members
+     * @return Long
+     */
+    public Long sAdd(String key, String... members){
+        try {
+            return redisTemplate.opsForSet().add(key, members);
+        }
+        catch (Exception e) {
+            log.error("RedisUtil类：redis sAdd数据异常");
+            log.error(e.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     * 移除并返回集合中的一个随机元素
+     * <li>当set为空或者不存在时，返回Null</li>
+     * @param key
+     * @return String
+     */
+    public Object sPop(String key){
+        try {
+            return redisTemplate.opsForSet().pop(key);
+        }
+        catch (Exception e) {
+            log.error("RedisUtil类：redis sPop数据异常");
+            log.error(e.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     * 移除并返回集合中的一个随机元素
+     * <li>当set为空或者不存在时，返回Null</li>
+     * @param key
+     * @return String
+     */
+    public List<Object> sPop(String key, long count){
+        try {
+            return redisTemplate.opsForSet().pop(key, count);
+        }
+        catch (Exception e) {
+            log.error("RedisUtil类：redis sPop数据异常");
+            log.error(e.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     * key集合与otherKey集合的并集存储到destKey中
+     * @param key
+     * @return String
+     */
+    public Long sUnionAndStore(String key, String otherKey, String destKey) {
+        try {
+            return redisTemplate.opsForSet().unionAndStore(key, otherKey, destKey);
+        }
+        catch (Exception e) {
+            log.error("RedisUtil类：redis sUnionAndStore数据异常");
+            log.error(e.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     * 判断 member 元素是否是集合 key 的成员，在集合中返回True
+     * @param key
+     * @param member
+     * @return Boolean
+     */
+    public Boolean sIsMember(String key, String member){
+        try {
+            return redisTemplate.opsForSet().isMember(key, member);
+        }
+        catch (Exception e) {
+            log.error("RedisUtil类：redis sIsMember异常");
+            log.error(e.getMessage());
+        }
+        return null;
     }
 }

@@ -1,7 +1,8 @@
 package com.hq.study.controller;
 
 
-import java.util.HashSet;
+import com.hq.study.utils.RedisUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Description:
@@ -10,6 +11,9 @@ import java.util.HashSet;
  * Date: 2019-12-27-11:44
  */
 public class Test02 extends Thread{
+
+    @Autowired
+    private RedisUtils redisUtils;
 
     static long value = 0l;
 
@@ -37,13 +41,7 @@ public class Test02 extends Thread{
     }
 
     public static void main(String[] args) {
-        Test02 test02 = new Test02();
-        test02.start();
-
-        HashSet set = new HashSet();
-        set.add(1);
-        set.add(2);
-        System.out.println(set);
+        //redisUtils.sAdd(1, "1");
     }
 
 
