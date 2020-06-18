@@ -100,26 +100,26 @@ spring:
       uri: 127.0.0.1
 
 
-eureka:
-    instance:
-      hostname: test-demo
-      instance-id:
-      # 默认使用IP 地址进行显示
-      prefer-ip-address: true
-    client:
-    # 关闭eureka client
-      # enabled: false
-      # 注册自身到eureka服务器
-      #registerWithEureka: false
-      # 表示是否从eureka服务器获取注册信息
-      #fetchRegistry: false
-      # 客户端从Eureka Server集群里更新Eureka Server信息的频率
-      #eureka-service-url-poll-interval-seconds: 60
-      # 定义从注册中心获取注册服务的信息
-      #registry-fetch-interval-seconds: 5
-      # 设置eureka服务器所在的地址，查询服务和注册服务都需要依赖这个地址（不要使用service-Url）
-      serviceUrl:
-        defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@127.0.0.1:8763/eureka/
+#eureka:
+#    instance:
+#      hostname: test-demo
+#      instance-id:
+#      # 默认使用IP 地址进行显示
+#      prefer-ip-address: true
+#    client:
+#    # 关闭eureka client
+#      # enabled: false
+#      # 注册自身到eureka服务器
+#      #registerWithEureka: false
+#      # 表示是否从eureka服务器获取注册信息
+#      #fetchRegistry: false
+#      # 客户端从Eureka Server集群里更新Eureka Server信息的频率
+#      #eureka-service-url-poll-interval-seconds: 60
+#      # 定义从注册中心获取注册服务的信息
+#      #registry-fetch-interval-seconds: 5
+#      # 设置eureka服务器所在的地址，查询服务和注册服务都需要依赖这个地址（不要使用service-Url）
+#      serviceUrl:
+#        defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@127.0.0.1:8763/eureka/
 
 
 #  rabbitmq:
