@@ -1,6 +1,7 @@
 package com.hj.study.service.impl;
 
 import com.hj.study.dao.SysLogDao;
+import com.hj.study.entity.MccXSelectEntity;
 import com.hj.study.entity.SysDeleteLogEntity;
 import com.hj.study.entity.SysLogEntity;
 import com.hj.study.service.SysDeleteService;
@@ -61,5 +62,10 @@ public class SysLogServiceImpl implements SysLogService {
 
         return sysLogDao.updateByPrimaryKey(sysLogEntity);
 
+    }
+
+    @Override
+    public int insertBatchSelect(List<MccXSelectEntity> list) {
+        return sysLogDao.insertBatchSelect(list);
     }
 }

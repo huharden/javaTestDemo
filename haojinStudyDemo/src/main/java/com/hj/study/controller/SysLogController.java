@@ -1,6 +1,7 @@
 package com.hj.study.controller;
 
 import com.hj.study.constant.StatusCode;
+import com.hj.study.entity.MccXSelectEntity;
 import com.hj.study.entity.SysLogEntity;
 import com.hj.study.service.SysLogService;
 import com.hj.study.utils.CommonException;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,14 +56,34 @@ public class SysLogController {
     }
 
     @PostMapping(path = "/test")
-    public Map<String, Object> syncUserRoleGrid(@RequestBody Map<String, Object> params) {
+    public String syncUserRoleGrid(@RequestBody Map<String, Object> params) {
         log.info("成功接收到消息===>>> {}", JsonUtil.toJson(params));
         Map<String, Object> map = new HashMap<>();
         map.put("code", 0);
         map.put("SN", params.get("SN"));
         map.put("errorDescription", "成功");
 
-        return map;
+        return JsonUtil.toJson(map);
+    }
+
+    @PostMapping(path = "/insertSelect")
+    public String insertSelect(@RequestBody Map<String, Object> params) {
+
+        List<MccXSelectEntity> list = new ArrayList<>();
+
+        for (int i = 0; i<10000; i++){
+
+            MccXSelectEntity mccXSelectEntity = new MccXSelectEntity();
+            mccXSelectEntity.setFIELD("13502000" + i);
+            mccXSelectEntity.setPROCESSING_ID("160169");
+            mccXSelectEntity.setTYPE("");
+            mccXSelectEntity.setMblNo("151700" + i);
+            list.add(mccXSelectEntity);
+        }
+        sysLogService.insertBatchSelect(list);
+
+        return "";
+
     }
 
 

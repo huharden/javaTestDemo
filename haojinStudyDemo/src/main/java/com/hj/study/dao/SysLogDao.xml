@@ -3,6 +3,16 @@
 <mapper namespace="com.hj.study.dao.SysLogDao">
 
 
+    <insert id="insertBatchSelect">
+        insert into mcc_x_select_285424
+        (FIELD, PROCESSING_ID, TYPE, mbl_no)
+        values
+        <foreach collection="list" item="item" index="index" open="" close="" separator=",">
+            (
+            #{item.FIELD},#{item.PROCESSING_ID},'',#{item.mbl_no}
+            )
+        </foreach>
+    </insert>
 
 
 </mapper>
