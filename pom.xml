@@ -12,6 +12,7 @@
         <module>haojinStudyDemo</module>
         <module>henqiStudyDemo</module>
         <module>eureka-server</module>
+        <module>spark</module>
     </modules>
 
     <parent>
