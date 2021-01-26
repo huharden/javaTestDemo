@@ -20,7 +20,7 @@ public class GatewayController {
 
         Map<String, Object> dataMap = new HashMap<>();
         dataMap.put("type", "1");
-        dataMap.put("name", "工商执照");
+        dataMap.put("name", "工商aa执照");
         resultMap.put("data", dataMap);
         return resultMap;
     }
