@@ -4,6 +4,7 @@ package com.hj.study;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * Description:
@@ -13,6 +14,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @SpringBootApplication(scanBasePackages = "com.hj.study")
 //@EnableEurekaClient
+@EnableAsync
 public class HaojinApplication {
     public static void main(String[] args) {
         SpringApplication.run(HaojinApplication.class,args);
