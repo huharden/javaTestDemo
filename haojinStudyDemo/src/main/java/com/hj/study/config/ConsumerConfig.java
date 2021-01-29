@@ -16,7 +16,7 @@ import java.util.Optional;
  * @createTime：2020/4/13 5:06 下午
  * @author：HuTao
  */
-@Component
+//@Component
 public class ConsumerConfig {
 
     @KafkaListener(topics = {"sl_test"})

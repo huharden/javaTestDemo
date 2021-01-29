@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @description 线程池配置类
  * @date 2021/1/28 3:10 下午
  */
-@Configuration
+//@Configuration
 public class ThreadPoolConfig {
 
     @Bean("gatewayThreadPoo")
