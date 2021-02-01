@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-@EnableScheduling
+//@EnableScheduling
 @Slf4j
 public class ScheduleJobTest implements SchedulingConfigurer {
 

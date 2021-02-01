@@ -12,16 +12,16 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @description 线程池配置类
  * @date 2021/1/28 3:10 下午
  */
-//@Configuration
+@Configuration
 public class ThreadPoolConfig {
 
-    @Bean("gatewayThreadPoo")
+    @Bean("gatewayThreadPool")
     public ThreadPoolTaskExecutor defaultThreadPool() {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
         //核心线程数量
         threadPoolTaskExecutor.setCorePoolSize(3);
         //最大线程数量
-        threadPoolTaskExecutor.setMaxPoolSize(5);
+        threadPoolTaskExecutor.setMaxPoolSize(4);
         //队列中最大任务数
         threadPoolTaskExecutor.setQueueCapacity(2);
         //线程名称前缀

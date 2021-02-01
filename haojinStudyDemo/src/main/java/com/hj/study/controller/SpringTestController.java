@@ -23,7 +23,9 @@ public class SpringTestController {
     @PostMapping("/async")
     public void test(){
         System.out.println("线程池测试===>");
-        springTestService.threadPoolTest();
+        for (int i = 0; i < 5; i++) {
+            springTestService.threadPoolTest();
+        }
     }
 
 
