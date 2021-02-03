@@ -1651,8 +1651,6 @@ public class DateUtil {
     }
 
     public static void main(String[] argsw) {
-
-
         Date date = new Date();
 
         SimpleDateFormat format2 = new  SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -1755,6 +1753,31 @@ public class DateUtil {
 
         long length1 = f.length();
         System.out.println("长度为1---------：" + length1);
+
+        String formatedMonthTime = getFormatedMonthTime("2021-01-22 12:23:15");
+        System.out.println("formatedMonthTime:" + formatedMonthTime);
+
+
+    }
+
+    /*
+     * @author: lijipeng
+     * @date: 2021-02-03 14:18
+     * @description: 根据日期字符串 得到年月。
+     * @param fromDateStr 开始日期
+     * @return
+     */
+    public static String getFormatedMonthTime(String fromDateStr) {
+        SimpleDateFormat startDateFormator = new SimpleDateFormat(DATE_TIME_FORMAT);
+        Date fromDate = null;
+        try {
+            fromDate = startDateFormator.parse(fromDateStr);
+        }
+        catch (ParseException e) {
+            log.error(e.getMessage(), e);
+        }
+        SimpleDateFormat endDateFormator = new SimpleDateFormat(DATE_FORMAT_6);
+        return endDateFormator.format(fromDate);
     }
 
     /**
