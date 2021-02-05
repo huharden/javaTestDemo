@@ -11,12 +11,12 @@ import java.util.Map;
 @RestController
 public class GatewayController {
 
-    @PostMapping("/cmclassify")
+    @PostMapping("/aiability/v1/ocr")
     public Map<String, Object> cmClassify(HttpServletRequest request){
         String XServerParam = request.getHeader("X-Server-Param");
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("resp_code", 200);
-        resultMap.put("resp_msg","");
+        resultMap.put("error_code", "0");
+        resultMap.put("error","");
 
         Map<String, Object> dataMap = new HashMap<>();
         dataMap.put("type", "1");
