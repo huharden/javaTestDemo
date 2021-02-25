@@ -30,5 +30,7 @@ public interface SysLogService  {
 
     int insertBatchSelect(List<MccXSelectEntity> list);
 
+    void transactionalTest();
+
 
 }

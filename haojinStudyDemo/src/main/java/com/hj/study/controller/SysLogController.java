@@ -9,6 +9,7 @@ import com.hj.study.utils.JsonUtil;
 import com.hj.study.utils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,6 +83,19 @@ public class SysLogController {
         }
         sysLogService.insertBatchSelect(list);
 
+        return "";
+
+    }
+
+    /**
+     * mysql事务测试
+     * @param params
+     * @return
+     */
+    @PostMapping(path = "/transactionalTest")
+    public String transactionalTest(@RequestBody Map<String, Object> params) {
+
+        sysLogService.transactionalTest();
         return "";
 
     }

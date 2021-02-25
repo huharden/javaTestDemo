@@ -68,4 +68,17 @@ public class SysLogServiceImpl implements SysLogService {
     public int insertBatchSelect(List<MccXSelectEntity> list) {
         return sysLogDao.insertBatchSelect(list);
     }
+
+    /**
+     * 事务测试
+     */
+    @Override
+    @Transactional
+    public void transactionalTest() {
+//        SysLogEntity sysLogEntity = new SysLogEntity();
+//        sysLogEntity.setIp("10.0.89.9");
+//        sysLogDao.insert(sysLogEntity);
+//        System.out.println("测试通过===>");
+
+    }
 }
