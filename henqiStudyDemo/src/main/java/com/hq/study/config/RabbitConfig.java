@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @author: hutao
  * @date 2019/9/29 14:21
  */
-@Configuration
+//@Configuration
 public class RabbitConfig {
     /**
      * 定义个direct交换器

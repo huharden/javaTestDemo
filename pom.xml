@@ -11,7 +11,7 @@
     <modules>
         <module>haojinStudyDemo</module>
         <module>henqiStudyDemo</module>
-        <module>eureka-server</module>
+<!--        <module>eureka-server</module>-->
         <module>spark</module>
     </modules>
 
@@ -44,6 +44,7 @@
 
     <!-- 继承父包 -->
     <dependencies>
+
         <!-- netty -->
         <dependency>
             <groupId>io.netty</groupId>
@@ -54,7 +55,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>20.0</version>
+            <version>23.0</version>
         </dependency>
         <!-- MyBatis配置 -->
         <dependency>
@@ -126,11 +127,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>23.0</version>
-        </dependency>
 
         <dependency>
             <groupId>com.vdurmont</groupId>
@@ -158,11 +154,6 @@
             <version>2.9.8</version>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.9.8</version>
-        </dependency>
-        <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>2.9.8</version>
@@ -183,11 +174,6 @@
             <artifactId>dom4j</artifactId>
             <version>1.6.1</version>
         </dependency>
-        <!-- 引入spring cloud的依赖 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -205,6 +191,17 @@
     <!--maven的插件-->
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

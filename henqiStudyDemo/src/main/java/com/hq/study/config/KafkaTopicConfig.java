@@ -4,7 +4,7 @@ import com.hq.study.model.KafkaTopicProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class KafkaTopicConfig {
 
 

@@ -1,20 +1,19 @@
 package com.hq.study;
 
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Description:
- *
- * @author: hutao
- * Date: 2019-10-19-11:00
+ * @author hutao
+ * @className HenQiApplication
+ * @description TODO
+ * @date 2021/2/26 10:16 上午
  */
-@SpringBootApplication(scanBasePackages = "com.hq.study")
-public class TestApplication {
+@SpringBootApplication
+public class HenQiApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(TestApplication.class,args);
+        SpringApplication.run(HenQiApplication.class,args);
         System.out.println("TestApplication...................");
     }
-
 }

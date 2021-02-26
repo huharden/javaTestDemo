@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import java.io.Serializable;
 
 @Data
-@Configuration
+//@Configuration
 public class KafkaTopicProperties implements Serializable {
 
     @Value("${kafka.topic.groupId}")
