@@ -36,7 +36,7 @@ public class NettyClient {
             System.out.println("客户端初始化完成===>");
 
             //启动客户端连接服务器
-            ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 6668).sync();
+            ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 8090).sync();
             //关闭通道进行监听
             channelFuture.channel().closeFuture().sync();
 
