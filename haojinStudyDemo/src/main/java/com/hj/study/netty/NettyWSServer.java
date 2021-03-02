@@ -8,6 +8,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,6 +21,9 @@ import org.springframework.stereotype.Component;
 public class NettyWSServer {
 
     private static final Logger log = LoggerFactory.getLogger(NettyWSServer.class);
+
+    @Value("${socket.port}")
+    private Integer port;
 
     public void run() {
         //创建两个线程组 bossGroup 和 workGroup
@@ -37,7 +41,7 @@ public class NettyWSServer {
                     .childOption(ChannelOption.SO_KEEPALIVE, true) //设置保持活动连接状态
                     .childHandler(new NettyWSServerInitializer()); //给workGroup 的EventLoop设置一个管道进行处理
             //启动服务器，并绑定端口并且同步，生成一个ChannelFuture
-            ChannelFuture cf = bootstrap.bind(6679).sync();
+            ChannelFuture cf = bootstrap.bind(port).sync();
             log.info("netty websocket server 启动完毕...");
 
             //监听关闭通道

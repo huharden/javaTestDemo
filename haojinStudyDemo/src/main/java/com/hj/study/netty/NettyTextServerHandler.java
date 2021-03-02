@@ -14,7 +14,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
  * @description:处理消息的handler
  * TextWebSocketFrame： 在netty中，是用于为websocket专门处理文本的对象，frame是消息的载体
  * @author: Conten
- * @create: 2019-04-24 15:24
+ * @create: 2021-02-28 15:24
  **/
 public class NettyTextServerHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {//TextWebSocketFrame是netty用于处理websocket发来的文本对象
     //所有正在连接的channel都会存在这里面，所以也可以间接代表在线的客户端
@@ -55,7 +55,9 @@ public class NettyTextServerHandler extends SimpleChannelInboundHandler<TextWebS
     //给每个人发送消息,除发消息人外
     private void SendAllMessages(ChannelHandlerContext ctx,String msg) {
         for(Channel channel:channelGroup){
-            if(!channel.id().asLongText().equals(ctx.channel().id().asLongText())){
+            System.out.println(channel.id().asLongText());
+            System.out.println(ctx.channel().id().asLongText());
+            if(channel.id().asLongText().equals(ctx.channel().id().asLongText())){
                 channel.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(msg)));
             }
         }

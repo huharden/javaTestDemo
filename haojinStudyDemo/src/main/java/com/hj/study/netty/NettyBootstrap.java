@@ -7,14 +7,13 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-/*
+/**
  * @author hutao
  * @className NettyBootstrap
  * @description netty 启动类
  * @date 2021/2/26 3:48 下午
  */
-
-@Component("BeanDefineConfig")
+@Component("BeanNettyConfig")
 @Slf4j
 public class NettyBootstrap implements ServletContextListener {
     /** 注入NettyServer */

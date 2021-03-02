@@ -67,6 +67,9 @@ es:
     response:
       size: 100
 
+socket:
+  port: 6679
+
 #  redis:
 #    cluster:
 #      #设置key的生存时间，当key过期时，它会被自动删除；
