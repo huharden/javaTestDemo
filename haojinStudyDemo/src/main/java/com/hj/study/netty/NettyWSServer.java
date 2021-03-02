@@ -30,8 +30,6 @@ public class NettyWSServer {
             //创建服务器端的启动对象，配置对象
             ServerBootstrap bootstrap = new ServerBootstrap();
 
-            System.out.println("测试===>>>>");
-
             // 使用NioSctpServerChannel 作为服务器通道实现
             bootstrap.group(bossGroup, workGroup)
                     .channel(NioServerSocketChannel.class) //设置NioSocketChannel 作为服务器的通道实现
@@ -39,7 +37,7 @@ public class NettyWSServer {
                     .childOption(ChannelOption.SO_KEEPALIVE, true) //设置保持活动连接状态
                     .childHandler(new NettyWSServerInitializer()); //给workGroup 的EventLoop设置一个管道进行处理
             //启动服务器，并绑定端口并且同步，生成一个ChannelFuture
-            ChannelFuture cf = bootstrap.bind(6669).sync();
+            ChannelFuture cf = bootstrap.bind(6679).sync();
             log.info("netty websocket server 启动完毕...");
 
             //监听关闭通道
