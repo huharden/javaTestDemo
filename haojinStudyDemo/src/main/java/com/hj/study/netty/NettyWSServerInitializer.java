@@ -46,7 +46,7 @@ public class NettyWSServerInitializer extends ChannelInitializer<SocketChannel> 
          * 会帮你处理握手动作： handshaking（close, ping, pong） ping + pong = 心跳
          * 对于websocket来讲，都是以frames进行传输的，不同的数据类型对应的frames也不同
          */
-        pipeline.addLast(new WebSocketServerProtocolHandler("/wsdddd"));
+        pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
 
         // 自定义的handler
         pipeline.addLast(new NettyTextServerHandler());
