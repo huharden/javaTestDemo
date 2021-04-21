@@ -13,10 +13,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class SpringTestServiceImpl implements SpringTestService {
 
+    static {
+        System.out.println("这是一个静态方法区");
+    }
+
+    public static String GLOBAL_VARIABLE = "全局静态变量";
+
     @Override
     @Async
     public void threadPoolTest() {
         System.out.println(Thread.currentThread().getName() + "线程池测试");
+
+    }
+
+    @Override
+    public void staticTest() {
+        GLOBAL_VARIABLE = "静态方法=>hello!";
+        System.out.println(GLOBAL_VARIABLE);
 
     }
 }

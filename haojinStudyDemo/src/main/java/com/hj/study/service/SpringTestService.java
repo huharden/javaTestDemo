@@ -9,4 +9,7 @@ package com.hj.study.service;
 public interface SpringTestService {
 
     void threadPoolTest();
+
+    //全局变量测试
+    void staticTest();
 }
