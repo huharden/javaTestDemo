@@ -1,6 +1,5 @@
-package com.hj.study.thread;
+package com.hj.study.thread.tongbu;
 
-import jodd.util.StringUtil;
 
 /**
  * @author hutao

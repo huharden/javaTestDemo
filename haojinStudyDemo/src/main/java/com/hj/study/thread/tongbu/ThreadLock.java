@@ -1,4 +1,4 @@
-package com.hj.study.thread;
+package com.hj.study.thread.tongbu;
 
 /**
  * @author hutao
