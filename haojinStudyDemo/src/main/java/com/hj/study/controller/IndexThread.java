@@ -11,9 +11,7 @@ import com.hj.study.utils.ThreadLocalUtil;
  */
 public class IndexThread {
     public static void main(String[] args) {
-        test1();
-        System.gc();
-       test2();
+        test5();
     }
 
     /**
@@ -40,5 +38,33 @@ public class IndexThread {
     public static void test4(){
         ThreadLocal local = new ThreadLocal();
         System.out.println("懒汉模式===>>>" + local.get());
+    }
+
+    /**
+     * 启动线程的几种方式
+     *  函数式接口
+     */
+    public static void test5(){
+        Thread thread =new Thread(()->{
+            System.out.println("测试");
+        });
+
+        thread.start();
+        System.out.println("lllll");
+        Thread.dumpStack();
+    }
+
+    /**
+     * 启动线程的几种方式
+     *  方法内实现
+     */
+    public static void test6(){
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("测试");
+            }
+        });
+        thread.start();
     }
 }
