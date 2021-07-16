@@ -3,7 +3,7 @@ package com.hj.study.gof.builder;
 /**
  * @author hutao
  * @className Test
- * @description TODO
+ * @description 单例模式
  * @date 2021/4/15 10:38 上午
  */
 public class Test {
